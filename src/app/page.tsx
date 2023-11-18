@@ -4,6 +4,7 @@ import CalendarContainer from './_components/CalendarContainer'
 import LinkButton from './_components/LinkButton'
 import RoomCard from './_components/RoomCard'
 import { roomData } from './_modules/data'
+import ReservationForm from './_components/ReservationForm'
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
           />
         ))}
       </section>
+      <ReservationForm />
     </main>
   )
 }
