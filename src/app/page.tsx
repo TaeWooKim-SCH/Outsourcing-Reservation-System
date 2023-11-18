@@ -8,7 +8,7 @@ import ReservationForm from './_components/ReservationForm'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center pt-24 px-32">
+    <main className="flex min-h-screen flex-col items-center pt-24 px-32 lg:px-72">
       <Title className="mb-5">산업시스템공학부 예약 시스템</Title>
       <section className="flex justify-end w-full mr-14 mb-5">
         <LinkButton href="/admin" className="mr-2">관리자</LinkButton>
