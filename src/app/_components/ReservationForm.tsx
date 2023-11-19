@@ -20,35 +20,41 @@ export default function ReservationForm() {
   
   return (
     <section className="mt-10 mb-20">
-      <div className="mr-7 space-y-10">
-        <div className="grid grid-cols-2">
-          <div className="">시간 선택</div>
-          <div className="grid grid-cols-4 gap-3">
+      <div className="space-y-10 bg-gray-300 py-5 px-5">
+        <div className="grid grid-cols-6 grid-rows-2">
+          <div className="text-center py-5">시간 선택</div>
+          <div className="grid grid-cols-5 gap-3 col-start-2 col-end-7">
             {timeList.map((time) => (
               <TimeCheck value={time} onChange={timeClickHandler} key={time} />
             ))}
           </div>
+          <div className="row-start-2 col-start-2 col-end-7">
+            <div>- 09~18시까지 1시간 단위로 예약 가능</div>
+            <div>- 09~18시까지 1시간 단위로 예약 가능</div>
+            <div>- 09~18시까지 1시간 단위로 예약 가능</div>
+            <div>- 09~18시까지 1시간 단위로 예약 가능</div>
+          </div>
         </div>
-        <div className="grid grid-cols-2">
-          <div>소속 및 학번</div>
+        <div className="grid grid-cols-6">
+          <div className="text-center py-5">소속 및 학번</div>
           <div>
             <input />
           </div>
         </div>
-        <div className="grid grid-cols-2">
-          <div>이름</div>
+        <div className="grid grid-cols-6">
+          <div className="text-center py-5">이름</div>
           <div>
             <input />
           </div>
         </div>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-6">
+          <div className="text-center py-5">연락처</div>
           <div>
-            <div>연락처</div>
             <input />
           </div>
         </div>
-        <div className="grid grid-cols-2">
-          <div>대여 사유</div>
+        <div className="grid grid-cols-6">
+          <div className="text-center py-5">대여 사유</div>
           <div>
             <input />
           </div>
