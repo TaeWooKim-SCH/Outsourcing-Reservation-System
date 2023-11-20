@@ -2,7 +2,11 @@
 
 import TimeCheck from "./TimeCheck";
 
-export default function ReservationForm() {
+interface PropsType {
+  timeClickHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export default function ReservationForm({ timeClickHandler }: PropsType) {
   const timeList = [
     '09:00~10:00',
     '10:00~11:00',
@@ -13,17 +17,13 @@ export default function ReservationForm() {
     '16:00~17:00',
     '17:00~18:00'
   ]
-
-  const timeClickHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  }
   
   return (
     <section className="mt-10 mb-20">
       <div className="bg-gray-300 py-5 px-5">
         <div className="grid grid-cols-6 grid-rows-2 border-b-[1px] border-black py-5">
           <div className="text-center py-5">시간 선택</div>
-          <div className="grid grid-cols-5 gap-3 col-start-2 col-end-7">
+          <div className="grid grid-cols-1 gap-3 col-start-2 col-end-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {timeList.map((time) => (
               <TimeCheck value={time} onChange={timeClickHandler} key={time} />
             ))}
@@ -60,21 +60,21 @@ export default function ReservationForm() {
           <div className="text-center py-5">대여 사유</div>
           <div className="col-start-2 col-end-7 flex space-x-3">
             <label className="flex items-center">
-              <input type="radio" name="reason" value="meeting" />
+              <input className="mr-1" type="radio" name="reason" value="meeting" />
               회의
             </label>
             <label className="flex items-center">
-              <input type="radio" name="reason" value="interview" />
+              <input className="mr-1" type="radio" name="reason" value="interview" />
               면담
             </label>
             <label className="flex items-center">
-              <input type="radio" name="reason" value="seminar" />
+              <input className="mr-1" type="radio" name="reason" value="seminar" />
               세미나
             </label>
             <label className="flex items-center">
-              <input className="" type="radio" name="reason" value="seminar" />
+              <input className="mr-1" type="radio" name="reason" value="seminar" />
               <div>기타:</div>
-              <input className="h-5 ml-2" type="text" value="" />
+              <input className="h-5 ml-2" type="text" />
             </label>
           </div>
         </div>
