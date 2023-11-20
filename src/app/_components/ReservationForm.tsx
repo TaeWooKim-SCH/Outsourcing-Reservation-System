@@ -4,9 +4,10 @@ import TimeCheck from "./TimeCheck";
 
 interface PropsType {
   timeClickHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  formChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function ReservationForm({ timeClickHandler }: PropsType) {
+export default function ReservationForm({ timeClickHandler, formChangeHandler }: PropsType) {
   const timeList = [
     '09:00~10:00',
     '10:00~11:00',
@@ -38,21 +39,21 @@ export default function ReservationForm({ timeClickHandler }: PropsType) {
         <div className="grid grid-cols-6 border-b-[1px] border-black py-5">
           <div className="text-center py-5">소속 및 학번</div>
           <div className="col-start-2 col-end-6 py-3">
-            <input />
+            <input onChange={formChangeHandler} name="studentId" />
             <div>Ex. 산업시스템공학부 20200111</div>
           </div>
         </div>
         <div className="grid grid-cols-6 border-b-[1px] border-black py-5">
           <div className="text-center py-5">이름</div>
           <div className="py-3">
-            <input />
+            <input onChange={formChangeHandler} name="studentName" />
             <div>Ex. 산시인</div>
           </div>
         </div>
         <div className="grid grid-cols-6 border-b-[1px] border-black py-5">
           <div className="text-center py-5">연락처</div>
           <div className="py-3">
-            <input />
+            <input onChange={formChangeHandler} name="phoneNumber" />
             <div>Ex. 010-0000-0000</div>
           </div>
         </div>

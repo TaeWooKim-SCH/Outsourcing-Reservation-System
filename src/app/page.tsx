@@ -45,6 +45,22 @@ export default function Home() {
     setForm(result);
   }
 
+  const formChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const result = {...form};
+    switch(e.target.name) {
+      case "studentId":
+        result.studentId = e.target.value;
+        break;
+      case "studentName":
+        result.studentName = e.target.value;
+        break;
+      case "phoneNumber":
+        result.phoneNumber = e.target.value;
+        break;
+    }
+    setForm(result);
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center pt-24 px-32 lg:px-30">
       <Title className="mb-5">산업시스템공학부 예약 시스템</Title>
@@ -65,7 +81,12 @@ export default function Home() {
           />
         ))}
       </section>
-      {isReserv && <ReservationForm timeClickHandler={timeClickHandler} />}
+      {isReserv && (
+        <ReservationForm
+          timeClickHandler={timeClickHandler}
+          formChangeHandler={formChangeHandler}
+        />
+      )}
     </main>
   )
 }
