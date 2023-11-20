@@ -6,10 +6,10 @@ interface PropsType {
   roomNumber: number;
   description: string;
   capacity: number;
-  floor: number;
+  facility: string;
 }
 
-export default function RoomCard({roomNumber, description, capacity, floor}: PropsType) {
+export default function RoomCard({roomNumber, description, capacity, facility}: PropsType) {
   return (
     <main className="border-[1px] border-black">
       <section className="w-72">
@@ -25,7 +25,7 @@ export default function RoomCard({roomNumber, description, capacity, floor}: Pro
         <div className="text-lg">{roomNumber}</div>
         <div className="text-sm">{description}</div>
         <div className="text-sm">수용인원 {capacity}명</div>
-        <div className="text-sm">{floor}층</div>
+        <div className="text-sm">{facility}</div>
       </section>
       <section className="flex justify-center items-center py-3 px-10 bg-gray-200">
         <FaRegCircleCheck size="30" fill="gray" />

@@ -22,7 +22,7 @@ export default function Home() {
             roomNumber={data.roomNumber}
             description={data.description}
             capacity={data.capacity}
-            floor={data.floor}
+            facility={data.facility}
           />
         ))}
       </section>
