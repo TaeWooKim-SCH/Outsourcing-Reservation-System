@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Calendar from "react-calendar";
 
@@ -11,15 +12,12 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export default function CalendarContainer() {
   const [value, setValue] = useState<Value>(new Date());
-
-  const dayClickHandler = () => {
-    return alert(value);
-  }
+  const router = useRouter();
 
   const dayChangeHandler = (date: Value) => {
     const parseDate = moment(date as Date).format('YYYYMMDD');
-    alert(parseDate);
     setValue(date);
+    router.push(`?date=${parseDate}`);
   }
 
   return (

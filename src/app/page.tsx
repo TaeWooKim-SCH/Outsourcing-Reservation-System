@@ -7,9 +7,11 @@ import LinkButton from './_components/LinkButton'
 import RoomCard from './_components/RoomCard'
 import { roomData } from './_modules/data'
 import ReservationForm from './_components/ReservationForm'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 export default function Home() {
+  const searchParams = useSearchParams();
   const [isReserv, setIsReserv] = useState(false);
   const [selectReason, setSelectReason] = useState(true);
   const [form, setForm] = useState<FormType>({
@@ -75,6 +77,12 @@ export default function Home() {
     setForm(result);
   }
 
+  useEffect(() => {
+    const result = {...form};
+    result.date = searchParams.get("date");
+    setForm(result);
+  }, [searchParams.get("date")])
+
   return (
     <main className="flex min-h-screen flex-col items-center pt-24 px-32 lg:px-30">
       <Title className="mb-5">산업시스템공학부 예약 시스템</Title>
@@ -108,7 +116,7 @@ export default function Home() {
 }
 
 interface FormType {
-  date: string;
+  date: string | null;
   roomNumber: number;
   time: {
     [key: string]: boolean;
