@@ -11,6 +11,7 @@ import { useState } from 'react'
 
 export default function Home() {
   const [isReserv, setIsReserv] = useState(false);
+  const [selectReason, setSelectReason] = useState(true);
   const [form, setForm] = useState<FormType>({
     date: "",
     roomNumber: 0,
@@ -57,7 +58,20 @@ export default function Home() {
       case "phoneNumber":
         result.phoneNumber = e.target.value;
         break;
+      case "reason":
+        result.reason = e.target.value;
+        if (e.target.value === "other") {
+          setSelectReason(false);
+        }
+        else {
+          setSelectReason(true);
+        }
+        break;
+      case "reason-text":
+        result.reason = `other ${e.target.value}`;
+        break;
     }
+    console.log(form);
     setForm(result);
   }
 
@@ -85,6 +99,8 @@ export default function Home() {
         <ReservationForm
           timeClickHandler={timeClickHandler}
           formChangeHandler={formChangeHandler}
+          selectReason={selectReason}
+          setSelectReason={setSelectReason}
         />
       )}
     </main>

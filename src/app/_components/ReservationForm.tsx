@@ -5,9 +5,11 @@ import TimeCheck from "./TimeCheck";
 interface PropsType {
   timeClickHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   formChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  selectReason: boolean;
+  setSelectReason: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function ReservationForm({ timeClickHandler, formChangeHandler }: PropsType) {
+export default function ReservationForm({ timeClickHandler, formChangeHandler, selectReason, setSelectReason }: PropsType) {
   const timeList = [
     '09:00~10:00',
     '10:00~11:00',
@@ -20,9 +22,9 @@ export default function ReservationForm({ timeClickHandler, formChangeHandler }:
   ]
   
   return (
-    <section className="mt-10 mb-20">
-      <div className="bg-gray-300 py-5 px-5">
-        <div className="grid grid-cols-6 grid-rows-2 border-b-[1px] border-black py-5">
+    <section className="mt-10 mb-20 border-2 border-black">
+      <div className="bg-gray-300 py-5">
+        <div className="grid grid-cols-6 grid-rows-2 border-b-2 border-white py-5">
           <div className="text-center py-5">시간 선택</div>
           <div className="grid grid-cols-1 gap-3 col-start-2 col-end-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {timeList.map((time) => (
@@ -36,21 +38,21 @@ export default function ReservationForm({ timeClickHandler, formChangeHandler }:
             <div>- 2시간 이상 대여 필요시, 과사무실 연락 요망</div>
           </div>
         </div>
-        <div className="grid grid-cols-6 border-b-[1px] border-black py-5">
+        <div className="grid grid-cols-6 border-b-2 border-white py-5">
           <div className="text-center py-5">소속 및 학번</div>
           <div className="col-start-2 col-end-6 py-3">
             <input onChange={formChangeHandler} name="studentId" />
             <div>Ex. 산업시스템공학부 20200111</div>
           </div>
         </div>
-        <div className="grid grid-cols-6 border-b-[1px] border-black py-5">
+        <div className="grid grid-cols-6 border-b-2 border-white py-5">
           <div className="text-center py-5">이름</div>
           <div className="py-3">
             <input onChange={formChangeHandler} name="studentName" />
             <div>Ex. 산시인</div>
           </div>
         </div>
-        <div className="grid grid-cols-6 border-b-[1px] border-black py-5">
+        <div className="grid grid-cols-6 border-b-2 border-white py-5">
           <div className="text-center py-5">연락처</div>
           <div className="py-3">
             <input onChange={formChangeHandler} name="phoneNumber" />
@@ -61,21 +63,27 @@ export default function ReservationForm({ timeClickHandler, formChangeHandler }:
           <div className="text-center py-5">대여 사유</div>
           <div className="col-start-2 col-end-7 flex space-x-3">
             <label className="flex items-center">
-              <input className="mr-1" type="radio" name="reason" value="meeting" />
+              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="meeting" />
               회의
             </label>
             <label className="flex items-center">
-              <input className="mr-1" type="radio" name="reason" value="interview" />
+              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="interview" />
               면담
             </label>
             <label className="flex items-center">
-              <input className="mr-1" type="radio" name="reason" value="seminar" />
+              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="seminar" />
               세미나
             </label>
             <label className="flex items-center">
-              <input className="mr-1" type="radio" name="reason" value="seminar" />
+              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="other" />
               <div>기타:</div>
-              <input className="h-5 ml-2" type="text" />
+              <input
+                className="h-5 ml-2"
+                onChange={formChangeHandler}
+                type="text"
+                name="reason-text"
+                disabled={selectReason}
+              />
             </label>
           </div>
         </div>
