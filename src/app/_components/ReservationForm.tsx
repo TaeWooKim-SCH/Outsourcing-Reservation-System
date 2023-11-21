@@ -22,7 +22,7 @@ export default function ReservationForm({ timeClickHandler, formChangeHandler, s
   ]
   
   return (
-    <section className="mt-10 mb-20 border-2 border-black">
+    <section className="mt-10 mb-5 border-2 border-black">
       <div className="bg-gray-300 py-5">
         <div className="grid grid-cols-6 grid-rows-2 border-b-2 border-white py-5">
           <div className="text-center py-5">시간 선택</div>

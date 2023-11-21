@@ -73,8 +73,17 @@ export default function Home() {
         result.reason = `other ${e.target.value}`;
         break;
     }
-    console.log(form);
     setForm(result);
+  }
+
+  const formPost = async (form: FormType) => {
+    await fetch("/api/reservation", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(form)
+    })
   }
 
   useEffect(() => {
@@ -104,12 +113,21 @@ export default function Home() {
         ))}
       </section>
       {isReserv && (
-        <ReservationForm
-          timeClickHandler={timeClickHandler}
-          formChangeHandler={formChangeHandler}
-          selectReason={selectReason}
-          setSelectReason={setSelectReason}
-        />
+        <section>
+          <ReservationForm
+            timeClickHandler={timeClickHandler}
+            formChangeHandler={formChangeHandler}
+            selectReason={selectReason}
+            setSelectReason={setSelectReason}
+          />
+          <div>- 회의실에는 음식물을 반입하실 수 없습니다.</div>
+          <div>- 회의실 이용시 예약 인원을 지켜주세요.</div>
+          <button
+            className="block py-2 px-5 mx-auto mb-20 text-white bg-yellow-700"
+            onClick={() => formPost(form)}
+            type="button"
+          >예약하기</button>
+        </section>
       )}
     </main>
   )
