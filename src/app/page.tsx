@@ -85,7 +85,10 @@ export default function Home() {
       body: JSON.stringify(form)
     });
     if (!res) alert("예약에 실패했습니다.");
-    else alert("예약에 성공했습니다.");
+    else {
+      alert("예약에 성공했습니다.");
+      window.location.reload();
+    };
   }
 
   useEffect(() => {
