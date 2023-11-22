@@ -98,7 +98,7 @@ export default function Home() {
   }, [searchParams.get("date")])
 
   return (
-    <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-24 md:px-28 mx-auto lg:px-30">
+    <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-24 px-10 md:px-28 mx-auto lg:px-30">
       <Title className="mb-5">산업시스템공학부 예약 시스템</Title>
       <section className="flex justify-end w-full mr-14 mb-5">
         <LinkButton href="/admin" className="mr-2">관리자</LinkButton>
