@@ -77,13 +77,15 @@ export default function Home() {
   }
 
   const formPost = async (form: FormType) => {
-    await fetch("/api/reservation", {
+    const res = await fetch("/api/reservation", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(form)
-    })
+    });
+    if (!res) alert("예약에 실패했습니다.");
+    else alert("예약에 성공했습니다.");
   }
 
   useEffect(() => {
