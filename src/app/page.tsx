@@ -7,11 +7,11 @@ import LinkButton from './_components/LinkButton'
 import RoomCard from './_components/RoomCard'
 import { roomData } from './_modules/data'
 import ReservationForm from './_components/ReservationForm'
-import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useState } from 'react'
+import moment from 'moment'
 
 export default function Home() {
-  const searchParams = useSearchParams();
+  const [value, setValue] = useState<Value>(new Date());
   const [isReserv, setIsReserv] = useState(false);
   const [selectReason, setSelectReason] = useState(true);
   const [form, setForm] = useState<FormType>({
@@ -33,10 +33,21 @@ export default function Home() {
     reason: ""
   });
 
+  const dayChangeHandler = (date: Value) => {
+    const parseDate = moment(date as Date).format('YYYYMMDD');
+    const result = {...form};
+    result.date = parseDate;
+    setForm(result);
+    setValue(date);
+    alert("날짜가 선택되었습니다.");
+  }
+
   const reservStateHandler = (value: number) => {
+    if (!form.date) return alert("날짜를 먼저 선택해주세요.");
     const result = {...form};
     result.roomNumber = value;
     setForm(result);
+    console.log(form);
     setIsReserv(true);
   }
 
@@ -91,12 +102,6 @@ export default function Home() {
     };
   }
 
-  useEffect(() => {
-    const result = {...form};
-    result.date = searchParams.get("date");
-    setForm(result);
-  }, [searchParams.get("date")])
-
   return (
     <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-24 px-10 md:px-28 mx-auto lg:px-30">
       <Title className="mb-5">산업시스템공학부 예약 시스템</Title>
@@ -104,7 +109,7 @@ export default function Home() {
         <LinkButton href="/admin" className="mr-2">관리자</LinkButton>
         <LinkButton href="/reservation" className="">예약확인</LinkButton>
       </section>
-      <CalendarContainer />
+      <CalendarContainer value={value} dayChangeHandler={dayChangeHandler} />
       <section className="w-full flex items-center space-x-5 mt-10 overflow-auto scrollbar-hide">
         {roomData.map((data) => (
           <RoomCard
@@ -149,3 +154,6 @@ interface FormType {
   phoneNumber: string;
   reason: string;
 }
+
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];

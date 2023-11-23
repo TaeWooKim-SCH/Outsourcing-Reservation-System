@@ -1,25 +1,11 @@
 'use client'
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import Calendar from "react-calendar";
 
 import '../_styles/CalendarContainer.css';
 import moment from "moment";
 
-type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
-
-export default function CalendarContainer() {
-  const [value, setValue] = useState<Value>(new Date());
-  const router = useRouter();
-
-  const dayChangeHandler = (date: Value) => {
-    const parseDate = moment(date as Date).format('YYYYMMDD');
-    setValue(date);
-    router.push(`?date=${parseDate}`);
-  }
-
+export default function CalendarContainer({ dayChangeHandler, value }: PropsType) {
   return (
     <main>
       <Calendar
@@ -36,3 +22,11 @@ export default function CalendarContainer() {
     </main>
   );
 }
+
+interface PropsType {
+  value: Value;
+  dayChangeHandler: (date: Value) => void
+}
+
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
