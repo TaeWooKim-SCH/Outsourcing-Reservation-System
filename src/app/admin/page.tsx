@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import AdminLoginForm from "../_components/AdminLoginForm";
 import Title from "../_components/Title";
+import AdminMainSection from "../_components/AdminMainSection";
 
 
 export default function Page() {
@@ -47,8 +48,9 @@ export default function Page() {
   }
   else {
     return (
-      <main>
+      <main className="py-20 px-20 flex flex-col items-center">
         <Title>산업시스템공학부 대여 시스템 관리자</Title>
+        <AdminMainSection />
       </main>
     );
   }
