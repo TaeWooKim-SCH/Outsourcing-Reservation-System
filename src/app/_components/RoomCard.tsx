@@ -33,7 +33,7 @@ export default function RoomCard({roomNumber, description, capacity, facility, r
         onClick={() => reservStateHandler(roomNumber)}
       >
         <FaRegCircleCheck size="30" fill="gray" />
-        <div className="ml-2 text-lg">예약</div>
+        <div className="ml-2 text-lg">대여</div>
       </button>
     </main>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import AdminLoginForm from "../_components/AdminLoginForm";
+import Title from "../_components/Title";
 
 
 export default function Page() {
@@ -10,7 +11,6 @@ export default function Page() {
     adminId: "",
     adminPw: ""
   });
-  // const isLogin = sessionStorage.getItem("login");
 
   const loginFormChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -47,7 +47,9 @@ export default function Page() {
   }
   else {
     return (
-      <div>로그인상태입니다.</div>
+      <main>
+        <Title>산업시스템공학부 대여 시스템 관리자</Title>
+      </main>
     );
   }
 }

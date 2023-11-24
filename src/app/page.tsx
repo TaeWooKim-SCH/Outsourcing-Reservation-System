@@ -15,7 +15,7 @@ export default function Home() {
   const [isReserv, setIsReserv] = useState(false);
   const [selectReason, setSelectReason] = useState(true);
   const [form, setForm] = useState<FormType>({
-    date: "",
+    date: new Date().toISOString().substring(0, 10),
     roomNumber: 0,
     time: {
       '09:00~10:00': false,
@@ -34,20 +34,21 @@ export default function Home() {
   });
 
   const dayChangeHandler = (date: Value) => {
-    const parseDate = moment(date as Date).format('YYYYMMDD');
+    const parseDate = moment(date as Date).format('YYYY-MM-DD');
     const result = {...form};
     result.date = parseDate;
     setForm(result);
     setValue(date);
     alert("날짜가 선택되었습니다.");
+    alert(parseDate);
   }
 
   const reservStateHandler = (value: number) => {
     if (!form.date) return alert("날짜를 먼저 선택해주세요.");
     const result = {...form};
     result.roomNumber = value;
-    setForm(result);
     console.log(form);
+    setForm(result);
     setIsReserv(true);
   }
 
@@ -95,19 +96,19 @@ export default function Home() {
       },
       body: JSON.stringify(form)
     });
-    if (!res) alert("예약에 실패했습니다.");
+    if (!res) alert("대여에 실패했습니다.");
     else {
-      alert("예약에 성공했습니다.");
+      alert("대여에 성공했습니다.");
       window.location.reload();
     };
   }
 
   return (
     <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-24 px-10 md:px-28 mx-auto lg:px-30">
-      <Title className="mb-5">산업시스템공학부 예약 시스템</Title>
+      <Title className="mb-5">산업시스템공학부 대여 시스템</Title>
       <section className="flex justify-end w-full mr-14 mb-5">
         <LinkButton href="/admin" className="mr-2">관리자</LinkButton>
-        <LinkButton href="/reservation" className="">예약확인</LinkButton>
+        <LinkButton href="/reservation" className="">대여확인</LinkButton>
       </section>
       <CalendarContainer value={value} dayChangeHandler={dayChangeHandler} />
       <section className="w-full flex items-center space-x-5 mt-10 overflow-auto scrollbar-hide">
@@ -131,12 +132,12 @@ export default function Home() {
             setSelectReason={setSelectReason}
           />
           <div>- 회의실에는 음식물을 반입하실 수 없습니다.</div>
-          <div>- 회의실 이용시 예약 인원을 지켜주세요.</div>
+          <div>- 회의실 이용시 대여 인원을 지켜주세요.</div>
           <button
             className="block py-2 px-5 mx-auto mb-20 text-white bg-yellow-700"
             onClick={() => formPost(form)}
             type="button"
-          >예약하기</button>
+          >대여하기</button>
         </section>
       )}
     </main>
