@@ -89,6 +89,18 @@ export default function Home() {
   }
 
   const formPost = async (form: FormType) => {
+    let timeCount = 0;
+
+    for (let time in form.time) {
+      if (form.time[time]) timeCount++;
+    }
+
+    if (!timeCount) return alert("대여 시간을 선택해주세요.");
+    else if (!form.studentId) return alert("학번 및 학과를 입력해주세요.");
+    else if (!form.studentName) return alert("이름을 입력해주세요.");
+    else if (!form.phoneNumber) return alert("전화번호를 입력해주세요.");
+    else if (!form.reason) return alert("대여 사유를 선택해주세요.");
+
     const res = await fetch("/api/reservation", {
       method: 'POST',
       headers: {
