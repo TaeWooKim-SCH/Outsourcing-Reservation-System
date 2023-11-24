@@ -32,8 +32,8 @@ export default function ReservationForm({ timeClickHandler, formChangeHandler, s
             ))}
           </div>
           <div className="row-start-2 col-start-2 col-end-7 mt-3 grid grid-cols-1 lg:grid-cols-2">
-            <div>- 09~18시까지 1시간 단위로 예약 가능</div>
-            <div>- 최대 1인 2시간 예약 가능</div>
+            <div>- 09~18시까지 1시간 단위로 대여 가능</div>
+            <div>- 최대 1인 2시간 대여 가능</div>
             <div>- 수업 있는 강의실은 해당 시간대 대여 불가</div>
             <div>- 2시간 이상 대여 필요시, 과사무실 연락 요망</div>
           </div>
