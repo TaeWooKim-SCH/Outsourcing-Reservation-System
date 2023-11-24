@@ -2,6 +2,7 @@
 
 import { Fragment, useEffect, useState } from "react";
 import TableHeaderElement from "./TableHeaderElement";
+import ChangeReservationState from "./ChangeReservationState";
 
 export default function AdminMainSection() {
   const [reserv, setReserv] = useState([]);
@@ -25,21 +26,22 @@ export default function AdminMainSection() {
             {headerElList.map((el) => <TableHeaderElement key={el}>{el}</TableHeaderElement>)}
           </tr>
         </thead>
-        <tbody className="border-2 border-black">
-          {reserv.length ? reserv.map((el: DataType, idx: number) => (
-            <tr className="text-center" key={el._id}>
+        <tbody>
+          {reserv.length ? reserv.map((el: DataType, idx: number) => {
+            return (
+            <tr className="text-center text-sm" key={el._id}>
               <td>{idx + 1}</td>
               <td>{el.studentName}</td>
               <td>{el.date}</td>
-              <td>10:00~11:00</td>
+              <td>{el.time.join(', ')}</td>
               <td>{el.roomNumber}</td>
               <td>{el.reason}</td>
               <td>{el.studentId}</td>
               <td>{el.phoneNumber}</td>
               <td>{el.isRoomKey ? "반납" : "미반납"}</td>
-              <td>{el.reservationState}</td>
+              <td>{el.reservationState === "pending" ? <ChangeReservationState /> : el.reservationState}</td>
             </tr>
-          )) : <td></td>}
+          )}) : <td></td>}
         </tbody>
       </table>
     </section>
