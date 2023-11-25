@@ -39,7 +39,7 @@ export default function AdminMainSection() {
               <td>{el.studentId}</td>
               <td>{el.phoneNumber}</td>
               <td>{el.isRoomKey ? "반납" : "미반납"}</td>
-              <td>{el.reservationState === "pending" ? <ChangeReservationState /> : el.reservationState}</td>
+              <td>{el.reservationState === "대기" ? <ChangeReservationState reservId={el._id} /> : el.reservationState}</td>
             </tr>
           )}) : <td></td>}
         </tbody>

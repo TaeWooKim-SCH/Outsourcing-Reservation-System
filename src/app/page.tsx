@@ -82,7 +82,7 @@ export default function Home() {
         }
         break;
       case "reason-text":
-        result.reason = `기타: ${e.target.value}`;
+        result.reason = `기타 - ${e.target.value}`;
         break;
     }
     setForm(result);

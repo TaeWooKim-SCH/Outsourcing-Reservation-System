@@ -42,7 +42,7 @@ export async function POST(request: Request) {
   }
 
   body.time = timeList;
-  body.reservationState = "pending";
+  body.reservationState = "대기";
   body.isRoomKey = false;
 
   const insertReservation = await db.collection("reservation-list").insertOne(body);
