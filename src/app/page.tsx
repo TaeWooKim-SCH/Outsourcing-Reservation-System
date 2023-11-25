@@ -123,7 +123,7 @@ export default function Home() {
         <LinkButton href="/reservation" className="">대여확인</LinkButton>
       </section>
       <CalendarContainer value={value} dayChangeHandler={dayChangeHandler} />
-      <section className="w-full flex items-center space-x-5 mt-10 overflow-auto scrollbar-hide">
+      <section className="w-full flex items-center space-x-5 pb-2 mt-10 overflow-auto room-card-section">
         {roomData.map((data) => (
           <RoomCard
             key={data.roomNumber}

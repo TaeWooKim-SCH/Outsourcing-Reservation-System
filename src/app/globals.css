@@ -13,3 +13,21 @@ html, body {
   height: 100%;
   overflow-x: hidden;
 }
+
+.room-card-section::-webkit-scrollbar {
+  background-color: rgb(238, 238, 238);
+  border-radius: 10px;
+  height: 12px;
+  border: 1px solid transparent;
+}
+
+.room-card-section::-webkit-scrollbar-thumb {
+  background-color: rgb(184, 184, 184);
+  border-radius: 5px;
+  background-clip: padding-box;
+  border: 1px solid transparent;
+}
+
+.room-card-section::-webkit-scrollbar-track {
+  border: 1px solid transparent;
+}
