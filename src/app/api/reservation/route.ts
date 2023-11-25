@@ -38,10 +38,7 @@ export async function POST(request: Request) {
     if (findNotPossible && findNotPossible[time] && body.time[time]) {
       return Response.json("예약 불가", { status: 401 })
     }
-
-    if (body.time[time]) {
-      timeList.push(time);
-    }
+    timeList.push(time);
   }
 
   body.time = timeList;

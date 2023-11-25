@@ -74,7 +74,7 @@ export default function Home() {
         break;
       case "reason":
         result.reason = e.target.value;
-        if (e.target.value === "other") {
+        if (e.target.value === "기타") {
           setSelectReason(false);
         }
         else {
@@ -82,7 +82,7 @@ export default function Home() {
         }
         break;
       case "reason-text":
-        result.reason = `other ${e.target.value}`;
+        result.reason = `기타: ${e.target.value}`;
         break;
     }
     setForm(result);
@@ -107,18 +107,28 @@ export default function Home() {
       }
     }
 
-    const res = await fetch("/api/reservation", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(form)
-    });
-    if (res.status === 401) alert("이미 대여자가 존재합니다.");
-    else {
-      alert("대여에 성공했습니다.");
-      window.location.reload();
-    };
+    const confirmForm = confirm(`
+      소속 및 학번: ${form.studentId}
+      이름: ${form.studentName}
+      연락처: ${form.phoneNumber}
+      대여 사유: ${form.reason}
+      위 정보가 맞습니까?
+    `)
+
+    if (confirmForm) {
+      const res = await fetch("/api/reservation", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+      });
+      if (res.status === 401) alert("이미 대여자가 존재합니다.");
+      else {
+        alert("대여에 성공했습니다.");
+        window.location.reload();
+      };
+    }
   }
 
   return (

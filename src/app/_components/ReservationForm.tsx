@@ -63,19 +63,19 @@ export default function ReservationForm({ timeClickHandler, formChangeHandler, s
           <div className="text-center py-5">대여 사유</div>
           <div className="col-start-2 col-end-7 flex space-x-3">
             <label className="flex items-center">
-              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="meeting" />
+              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="회의" />
               회의
             </label>
             <label className="flex items-center">
-              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="interview" />
+              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="면담" />
               면담
             </label>
             <label className="flex items-center">
-              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="seminar" />
+              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="세미나" />
               세미나
             </label>
             <label className="flex items-center">
-              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="other" />
+              <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="기타" />
               <div>기타:</div>
               <input
                 className="h-5 ml-2"
