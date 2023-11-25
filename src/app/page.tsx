@@ -101,6 +101,12 @@ export default function Home() {
     else if (!form.phoneNumber) return alert("전화번호를 입력해주세요.");
     else if (!form.reason) return alert("대여 사유를 선택해주세요.");
 
+    for (let time in form.time) {
+      if (!form.time[time]) {
+        delete form.time[time];
+      }
+    }
+
     const res = await fetch("/api/reservation", {
       method: 'POST',
       headers: {
@@ -108,7 +114,7 @@ export default function Home() {
       },
       body: JSON.stringify(form)
     });
-    if (!res) alert("대여에 실패했습니다.");
+    if (res.status === 401) alert("이미 대여자가 존재합니다.");
     else {
       alert("대여에 성공했습니다.");
       window.location.reload();
