@@ -28,6 +28,16 @@ export default function Page() {
     setForm(result);
   };
 
+  const intervalPage = () => {
+    setInterval(() => {
+      window.location.reload();
+    }, 60000);
+  }
+
+  useEffect(() => {
+    intervalPage();
+  }, []);
+
   useEffect(() => {
     if (sessionStorage.getItem("login") === "yes") {
       setIsLogin(true);

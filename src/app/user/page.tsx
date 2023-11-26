@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UserLoginForm from "../_components/UserLoginForm";
 import UserMainSection from "../_components/UserMainSection";
 import Title from "../_components/Title";
