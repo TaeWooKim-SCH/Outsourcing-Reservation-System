@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function AdminLoginForm({ form, loginFormChangeHandler, setIsLogin }: PropsType) {
+export default function AdminLoginForm({ form, loginFormChangeHandler }: PropsType) {
   const loginPost = async () => {
     const res = await fetch('/api/admin/login', {
       method: 'POST',
@@ -12,8 +12,9 @@ export default function AdminLoginForm({ form, loginFormChangeHandler, setIsLogi
     if (!res.ok) alert("아이디 또는 비밀번호가 잘못되었습니다.");
     else {
       sessionStorage.setItem("login", "yes");
-      setIsLogin(true);
+      // setIsLogin(true);
       alert("로그인에 성공했습니다.");
+      window.location.reload();
     };
   }
   
@@ -60,5 +61,4 @@ interface PropsType {
     adminPw: string;
   }
   loginFormChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }

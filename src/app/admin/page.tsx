@@ -7,7 +7,7 @@ import AdminMainSection from "../_components/AdminMainSection";
 
 
 export default function Page() {
-  const [isLogin, setIsLogin] = useState(false);
+  const isLogin = sessionStorage.getItem("login") === "yes" ? true : false;
   const [form, setForm] = useState({
     adminId: "",
     adminPw: ""
@@ -28,31 +28,22 @@ export default function Page() {
     setForm(result);
   };
 
-  const intervalPage = () => {
-    setInterval(() => {
-      window.location.reload();
-    }, 60000);
-  }
-
   useEffect(() => {
-    intervalPage();
-  }, []);
-
-  useEffect(() => {
-    if (sessionStorage.getItem("login") === "yes") {
-      setIsLogin(true);
+    if (isLogin) {
+      const intervalPage = setInterval(() => {
+        window.location.reload();
+      }, 3000);
+      return () => {
+        clearInterval(intervalPage)
+      };
     }
-    else {
-      setIsLogin(false);
-    }
-  }, [isLogin])
+  }, [isLogin]);
 
   if (!isLogin) {
     return (
       <AdminLoginForm
         loginFormChangeHandler={loginFormChangeHandler}
         form={form}
-        setIsLogin={setIsLogin}
       />
     );
   }
