@@ -12,7 +12,7 @@ export default function AdminMainSection() {
     const res = await fetch("/api/reservation");
     const json: DataType[] = await res.json();
     json.sort((a: DataType, b: DataType) => {
-      if (new Date(a.date) < new Date(b.date)) {
+      if (new Date(a.date) > new Date(b.date)) {
         return -1;
       }
       else {

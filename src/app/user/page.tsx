@@ -36,7 +36,15 @@ export default function Page() {
       },
       body: JSON.stringify(form)
     });
-    const json = await res.json();
+    const json: ReservationType[] = await res.json();
+    json.sort((a: ReservationType, b: ReservationType) => {
+      if (new Date(a.date) > new Date(b.date)) {
+        return -1;
+      }
+      else {
+        return 1;
+      }
+    })
     if (!res.ok) alert("대여 목록이 존재하지 않습니다. 이름 또는 전화번호를 확인하세요.");
     else {
       setReservationList(json);
