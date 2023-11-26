@@ -5,12 +5,20 @@ import TableHeaderElement from "./TableHeaderElement";
 import ChangeReservationState from "./ChangeReservationState";
 
 export default function AdminMainSection() {
-  const [reserv, setReserv] = useState([]);
+  const [reserv, setReserv] = useState<DataType[]>([]);
   const headerElList = ["No.", "이름", "날짜", "시간", "장소", "대여사유", "소속/학번", "휴대폰 번호", "비고"];
 
   const reservationDataFetching = async () => {
     const res = await fetch("/api/reservation");
-    const json = await res.json();
+    const json: DataType[] = await res.json();
+    json.sort((a: DataType, b: DataType) => {
+      if (new Date(a.date) < new Date(b.date)) {
+        return -1;
+      }
+      else {
+        return 1;
+      }
+    })
     setReserv(json);
   }
 
