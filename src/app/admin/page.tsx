@@ -32,7 +32,7 @@ export default function Page() {
     if (isLogin) {
       const intervalPage = setInterval(() => {
         window.location.reload();
-      }, 3000);
+      }, 60000);
       return () => {
         clearInterval(intervalPage)
       };
