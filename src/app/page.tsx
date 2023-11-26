@@ -13,6 +13,16 @@ import moment from 'moment'
 export default function Home() {
   const [value, setValue] = useState<Value>(new Date());
   const [isReserv, setIsReserv] = useState(false);
+  const [cardActive, setCardActive] = useState<ActiveType>({
+    "111": false,
+    "215": false,
+    "216": false,
+    "220": false,
+    "311": false,
+    "315": false,
+    "320": false,
+    "407": false
+  });
   const [selectReason, setSelectReason] = useState(true);
   const [form, setForm] = useState<FormType>({
     date: new Date().toISOString().substring(0, 10),
@@ -34,20 +44,35 @@ export default function Home() {
   });
 
   const dayChangeHandler = (date: Value) => {
+    if (date && date.toLocaleString("ko-KR") < new Date().toLocaleDateString("ko-KR")) {
+      return alert("지난 날짜는 선택할 수 없습니다.");
+    }
     const parseDate = moment(date as Date).format('YYYY-MM-DD');
     const result = {...form};
     result.date = parseDate;
     setForm(result);
     setValue(date);
     alert("날짜가 선택되었습니다.");
-    alert(parseDate);
   }
 
   const reservStateHandler = (value: number) => {
     if (!form.date) return alert("날짜를 먼저 선택해주세요.");
     const result = {...form};
+    const activeResult: ActiveType = {
+      "111": false,
+      "215": false,
+      "216": false,
+      "220": false,
+      "311": false,
+      "315": false,
+      "320": false,
+      "407": false
+    };
+
+    activeResult[String(value)] = true;
+    setCardActive(activeResult);
+
     result.roomNumber = value;
-    console.log(form);
     setForm(result);
     setIsReserv(true);
   }
@@ -143,6 +168,7 @@ export default function Home() {
         {roomData.map((data) => (
           <RoomCard
             key={data.roomNumber}
+            cardActive={cardActive[String(data.roomNumber)]}
             roomNumber={data.roomNumber}
             description={data.description}
             capacity={data.capacity}
@@ -182,6 +208,10 @@ interface FormType {
   studentName: string;
   phoneNumber: string;
   reason: string;
+}
+
+interface ActiveType {
+  [key: string]: boolean;
 }
 
 type ValuePiece = Date | null;

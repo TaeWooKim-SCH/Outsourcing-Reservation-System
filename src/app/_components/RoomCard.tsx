@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FaRegCircleCheck } from "react-icons/fa6";
 
 interface PropsType {
+  cardActive: boolean;
   roomNumber: number;
   description: string;
   capacity: number;
@@ -10,7 +11,14 @@ interface PropsType {
   reservStateHandler: (value: number) => void
 }
 
-export default function RoomCard({roomNumber, description, capacity, facility, reservStateHandler}: PropsType) {
+export default function RoomCard({
+  cardActive,
+  roomNumber,
+  description,
+  capacity,
+  facility,
+  reservStateHandler
+}: PropsType) {
   return (
     <main className="border-[1px] border-black">
       <section className="w-72">
@@ -32,7 +40,7 @@ export default function RoomCard({roomNumber, description, capacity, facility, r
         className="w-full flex justify-center items-center py-3 px-10 bg-gray-200"
         onClick={() => reservStateHandler(roomNumber)}
       >
-        <FaRegCircleCheck size="30" fill="gray" />
+        <FaRegCircleCheck className={cardActive ? "fill-[#1891C3]" : ""} size="30" fill="gray" />
         <div className="ml-2 text-lg">대여</div>
       </button>
     </main>

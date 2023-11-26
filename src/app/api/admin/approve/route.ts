@@ -17,3 +17,5 @@ export async function POST(request: Request) {
     Response.json("실패", { status: 401 })
   }
 }
+
+// 예약 거절을 하면 데이터베이스에 not-possible-list도 수정되어야 함
