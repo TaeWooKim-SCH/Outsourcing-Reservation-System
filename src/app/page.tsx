@@ -161,7 +161,7 @@ export default function Home() {
       <Title className="mb-5">산업시스템공학부 대여 시스템</Title>
       <section className="flex justify-end w-full mr-14 mb-5">
         <LinkButton href="/admin" className="mr-2">관리자</LinkButton>
-        <LinkButton href="/reservation" className="">대여확인</LinkButton>
+        <LinkButton href="/user" className="">대여확인</LinkButton>
       </section>
       <CalendarContainer value={value} dayChangeHandler={dayChangeHandler} />
       <section className="w-full flex items-center space-x-5 pb-2 mt-10 overflow-auto room-card-section">

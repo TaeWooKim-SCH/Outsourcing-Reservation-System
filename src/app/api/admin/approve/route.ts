@@ -10,7 +10,6 @@ export async function POST(request: Request) {
   }, {
     $set: {reservationState: body.reservationState}
   });
-  console.log(body);
 
   if (body.reservationState === "거절" && getReserv) {
     const timeObj: {[key: string]: boolean} = {};
