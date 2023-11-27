@@ -5,9 +5,8 @@ import AdminLoginForm from "../_components/AdminLoginForm";
 import Title from "../_components/Title";
 import AdminMainSection from "../_components/AdminMainSection";
 
-
 export default function Page() {
-  const isLogin = typeof(window) !== "undefined" && sessionStorage.getItem("login") === "yes" ? true : false;
+  const [isLogin, setIsLogin] = useState(false);
   const [form, setForm] = useState({
     adminId: "",
     adminPw: ""
@@ -29,6 +28,8 @@ export default function Page() {
   };
 
   useEffect(() => {
+    const sessionIsLogin = sessionStorage.getItem("login") === "yes" ? true : false;
+    setIsLogin(sessionIsLogin);
     if (isLogin) {
       const intervalPage = setInterval(() => {
         window.location.reload();
