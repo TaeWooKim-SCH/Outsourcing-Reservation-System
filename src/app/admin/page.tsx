@@ -7,7 +7,7 @@ import AdminMainSection from "../_components/AdminMainSection";
 
 
 export default function Page() {
-  const isLogin = sessionStorage.getItem("login") === "yes" ? true : false;
+  const isLogin = typeof(window) !== "undefined" && sessionStorage.getItem("login") === "yes" ? true : false;
   const [form, setForm] = useState({
     adminId: "",
     adminPw: ""
