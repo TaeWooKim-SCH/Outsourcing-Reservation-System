@@ -47,6 +47,10 @@ export default function Home() {
     if (date && date.toLocaleString("ko-KR") < new Date().toLocaleDateString("ko-KR")) {
       return alert("지난 날짜는 선택할 수 없습니다.");
     }
+    else if (moment(date as Date).weekday() === 0 || moment(date as Date).weekday() === 6) {
+      return alert("주말은 대여할 수 없습니다.");
+    }
+    console.log(moment(date as Date).weekday());
     const parseDate = moment(date as Date).format('YYYY-MM-DD');
     const result = {...form};
     result.date = parseDate;
