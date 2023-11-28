@@ -50,7 +50,6 @@ export default function Home() {
     else if (moment(date as Date).weekday() === 0 || moment(date as Date).weekday() === 6) {
       return alert("주말은 대여할 수 없습니다.");
     }
-    console.log(moment(date as Date).weekday());
     const parseDate = moment(date as Date).format('YYYY-MM-DD');
     const result = {...form};
     result.date = parseDate;
