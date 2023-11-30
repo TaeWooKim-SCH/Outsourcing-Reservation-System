@@ -49,7 +49,7 @@ export const roomData = [
   },
 ];
 
-const roomSchedule = {
+export const roomSchedule: RoomScheduleType = {
   "111": {
     "1": ["10:00~11:00", "14:00~15:00", "15:00~16:00"],
     "2": ["13:00~14:00", "14:00~15:00"],
@@ -90,4 +90,10 @@ const roomSchedule = {
   "407": {
     "2": ["09:00~10:00", "10:00~11:00"],
   },
+}
+
+interface RoomScheduleType {
+  [key: string]: {
+    [key:string]: string[]
+  }
 }

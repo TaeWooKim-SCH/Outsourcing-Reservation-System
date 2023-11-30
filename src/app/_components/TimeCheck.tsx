@@ -1,7 +1,7 @@
-export default function TimeCheck({ value, onChange, children }: React.ComponentProps<'input'>) {
+export default function TimeCheck({ value, onChange, disabled }: React.ComponentProps<'input'>) {
   return (
     <label>
-      <input className="mr-2" type="checkbox" value={value} onChange={onChange} />
+      <input className="mr-2" type="checkbox" value={value} onChange={onChange} disabled={disabled} />
       {value}
     </label>
   );

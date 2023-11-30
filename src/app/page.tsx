@@ -183,10 +183,10 @@ export default function Home() {
       {isReserv && (
         <section>
           <ReservationForm
+            form={form}
             timeClickHandler={timeClickHandler}
             formChangeHandler={formChangeHandler}
             selectReason={selectReason}
-            setSelectReason={setSelectReason}
           />
           <div>- 회의실에는 음식물을 반입하실 수 없습니다.</div>
           <div>- 회의실 이용시 대여 인원을 지켜주세요.</div>

@@ -1,15 +1,17 @@
 'use client'
 
+import moment from "moment";
+import { roomSchedule } from "../_modules/data";
 import TimeCheck from "./TimeCheck";
 
 interface PropsType {
+  form: FormType;
   timeClickHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   formChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   selectReason: boolean;
-  setSelectReason: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function ReservationForm({ timeClickHandler, formChangeHandler, selectReason, setSelectReason }: PropsType) {
+export default function ReservationForm({ form, timeClickHandler, formChangeHandler, selectReason }: PropsType) {
   const timeList = [
     '09:00~10:00',
     '10:00~11:00',
@@ -19,7 +21,9 @@ export default function ReservationForm({ timeClickHandler, formChangeHandler, s
     '15:00~16:00',
     '16:00~17:00',
     '17:00~18:00'
-  ]
+  ];
+
+  
   
   return (
     <section className="mt-10 mb-5 border-2 border-black">
@@ -27,9 +31,16 @@ export default function ReservationForm({ timeClickHandler, formChangeHandler, s
         <div className="grid grid-cols-6 grid-rows-2 border-b-2 border-white py-5">
           <div className="text-center py-5">시간 선택</div>
           <div className="grid grid-cols-1 gap-3 col-start-2 col-end-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {timeList.map((time) => (
-              <TimeCheck value={time} onChange={timeClickHandler} key={time} />
-            ))}
+            {timeList.map((time) => {
+              if (roomSchedule[String(form.roomNumber)] && form.date) {
+                const weekDay = moment(new Date(form.date)).weekday();
+                if (roomSchedule[String(form.roomNumber)][String(weekDay)]) {
+                  const disabled = roomSchedule[String(form.roomNumber)][String(weekDay)];
+                  return <TimeCheck value={time} onChange={timeClickHandler} key={time} disabled={disabled.includes(time)} />;
+                }
+              }
+              return <TimeCheck value={time} onChange={timeClickHandler} key={time} />;
+            })}
           </div>
           <div className="row-start-2 col-start-2 col-end-7 mt-3 grid grid-cols-1 lg:grid-cols-2">
             <div>- 09~18시까지 1시간 단위로 대여 가능</div>
@@ -90,4 +101,16 @@ export default function ReservationForm({ timeClickHandler, formChangeHandler, s
       </div>
     </section>
   );
+}
+
+interface FormType {
+  date: string | null;
+  roomNumber: number;
+  time: {
+    [key: string]: boolean;
+  },
+  studentId: string;
+  studentName: string;
+  phoneNumber: string;
+  reason: string;
 }
