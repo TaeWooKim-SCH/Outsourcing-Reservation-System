@@ -160,81 +160,84 @@ export default function Home() {
   }
 
   return (
-    <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-24 px-10 md:px-28 mx-auto lg:px-30">
-      <Title className="mb-5">산업시스템공학부 대여 시스템</Title>
-      <section className="flex justify-end w-full mr-14 mb-5">
-        <LinkButton href="/admin" className="mr-2">관리자</LinkButton>
-        <LinkButton href="/user" className="">대여확인</LinkButton>
-      </section>
-      <CalendarContainer value={value} dayChangeHandler={dayChangeHandler} />
-      <section className="w-full pb-2 my-10">
-        <section className="mb-10">
-          <div className="text-lg font-bold border-b border-black pb-2 mb-5">회의실</div>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {roomData.map((data) => (data.roomType === "meeting" &&
-              <RoomCard
-                key={data.roomNumber}
-                cardActive={cardActive[String(data.roomNumber)]}
-                roomNumber={data.roomNumber}
-                description={data.description}
-                capacity={data.capacity}
-                facility={data.facility}
-                reservStateHandler={reservStateHandler}
-              />
-            ))}
-          </div>
+    <>
+      <Image className="w-[130px] h-[90px]" src="/logo-img.jpg" width="500" height="500" alt="로고" />
+      <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-5 px-10 md:px-28 mx-auto lg:px-30">
+        <Title className="mb-5">산업시스템공학부 대여 시스템</Title>
+        <section className="flex justify-end w-full mr-14 mb-5">
+          <LinkButton href="/admin" className="mr-2">관리자</LinkButton>
+          <LinkButton href="/user" className="">대여확인</LinkButton>
         </section>
-        <section className="mb-10">
-          <div className="text-lg font-bold border-b border-black pb-2 mb-5">전산실</div>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {roomData.map((data) => (data.roomType === "computer" &&
-              <RoomCard
-                key={data.roomNumber}
-                cardActive={cardActive[String(data.roomNumber)]}
-                roomNumber={data.roomNumber}
-                description={data.description}
-                capacity={data.capacity}
-                facility={data.facility}
-                reservStateHandler={reservStateHandler}
-              />
-            ))}
-          </div>
+        <CalendarContainer value={value} dayChangeHandler={dayChangeHandler} />
+        <section className="w-full pb-2 my-10">
+          <section className="mb-10">
+            <div className="text-lg font-bold border-b border-black pb-2 mb-5">회의실</div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {roomData.map((data) => (data.roomType === "meeting" &&
+                <RoomCard
+                  key={data.roomNumber}
+                  cardActive={cardActive[String(data.roomNumber)]}
+                  roomNumber={data.roomNumber}
+                  description={data.description}
+                  capacity={data.capacity}
+                  facility={data.facility}
+                  reservStateHandler={reservStateHandler}
+                />
+              ))}
+            </div>
+          </section>
+          <section className="mb-10">
+            <div className="text-lg font-bold border-b border-black pb-2 mb-5">전산실</div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {roomData.map((data) => (data.roomType === "computer" &&
+                <RoomCard
+                  key={data.roomNumber}
+                  cardActive={cardActive[String(data.roomNumber)]}
+                  roomNumber={data.roomNumber}
+                  description={data.description}
+                  capacity={data.capacity}
+                  facility={data.facility}
+                  reservStateHandler={reservStateHandler}
+                />
+              ))}
+            </div>
+          </section>
+          <section>
+            <div className="text-lg font-bold border-b border-black pb-2 mb-5">강의실</div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {roomData.map((data) => (data.roomType === "lecture" &&
+                <RoomCard
+                  key={data.roomNumber}
+                  cardActive={cardActive[String(data.roomNumber)]}
+                  roomNumber={data.roomNumber}
+                  description={data.description}
+                  capacity={data.capacity}
+                  facility={data.facility}
+                  reservStateHandler={reservStateHandler}
+                />
+              ))}
+            </div>
+          </section>
         </section>
-        <section>
-          <div className="text-lg font-bold border-b border-black pb-2 mb-5">강의실</div>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {roomData.map((data) => (data.roomType === "lecture" &&
-              <RoomCard
-                key={data.roomNumber}
-                cardActive={cardActive[String(data.roomNumber)]}
-                roomNumber={data.roomNumber}
-                description={data.description}
-                capacity={data.capacity}
-                facility={data.facility}
-                reservStateHandler={reservStateHandler}
-              />
-            ))}
-          </div>
-        </section>
-      </section>
-      {isReserv && (
-        <section>
-          <ReservationForm
-            form={form}
-            timeClickHandler={timeClickHandler}
-            formChangeHandler={formChangeHandler}
-            selectReason={selectReason}
-          />
-          <div>- 회의실에는 음식물을 반입하실 수 없습니다.</div>
-          <div>- 회의실 이용시 대여 인원을 지켜주세요.</div>
-          <button
-            className="block py-2 px-5 mx-auto mb-20 text-white bg-[#1891C3] rounded-md"
-            onClick={() => formPost(form)}
-            type="button"
-          >대여하기</button>
-        </section>
-      )}
-    </main>
+        {isReserv && (
+          <section>
+            <ReservationForm
+              form={form}
+              timeClickHandler={timeClickHandler}
+              formChangeHandler={formChangeHandler}
+              selectReason={selectReason}
+            />
+            <div>- 회의실에는 음식물을 반입하실 수 없습니다.</div>
+            <div>- 회의실 이용시 대여 인원을 지켜주세요.</div>
+            <button
+              className="block py-2 px-5 mx-auto mb-20 text-white bg-[#1891C3] rounded-md"
+              onClick={() => formPost(form)}
+              type="button"
+            >대여하기</button>
+          </section>
+        )}
+      </main>
+    </>
   )
 }
 
