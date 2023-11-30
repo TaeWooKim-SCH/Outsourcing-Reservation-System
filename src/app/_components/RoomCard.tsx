@@ -22,9 +22,9 @@ export default function RoomCard({
   
   return (
     <main className="border-[1px] border-black">
-      <section className="w-72">
+      <section className="w-full">
         <Image
-          className="w-72 h-48 object-cover"
+          className="w-full h-48 object-cover"
           src={`/roomImg/${roomNumber}/${roomNumber}-1.jpg`}
           width="300"
           height="300"

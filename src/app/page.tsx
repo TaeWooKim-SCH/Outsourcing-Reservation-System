@@ -167,18 +167,55 @@ export default function Home() {
         <LinkButton href="/user" className="">대여확인</LinkButton>
       </section>
       <CalendarContainer value={value} dayChangeHandler={dayChangeHandler} />
-      <section className="w-full flex items-center space-x-5 pb-2 mt-10 overflow-auto room-card-section">
-        {roomData.map((data) => (
-          <RoomCard
-            key={data.roomNumber}
-            cardActive={cardActive[String(data.roomNumber)]}
-            roomNumber={data.roomNumber}
-            description={data.description}
-            capacity={data.capacity}
-            facility={data.facility}
-            reservStateHandler={reservStateHandler}
-          />
-        ))}
+      <section className="w-full pb-2 my-10">
+        <section className="mb-10">
+          <div className="text-lg font-bold border-b border-black pb-2 mb-5">회의실</div>
+          <div className="grid grid-cols-3 gap-5">
+            {roomData.map((data) => (data.roomType === "meeting" &&
+              <RoomCard
+                key={data.roomNumber}
+                cardActive={cardActive[String(data.roomNumber)]}
+                roomNumber={data.roomNumber}
+                description={data.description}
+                capacity={data.capacity}
+                facility={data.facility}
+                reservStateHandler={reservStateHandler}
+              />
+            ))}
+          </div>
+        </section>
+        <section className="mb-10">
+          <div className="text-lg font-bold border-b border-black pb-2 mb-5">전산실</div>
+          <div className="grid grid-cols-3 gap-5">
+            {roomData.map((data) => (data.roomType === "computer" &&
+              <RoomCard
+                key={data.roomNumber}
+                cardActive={cardActive[String(data.roomNumber)]}
+                roomNumber={data.roomNumber}
+                description={data.description}
+                capacity={data.capacity}
+                facility={data.facility}
+                reservStateHandler={reservStateHandler}
+              />
+            ))}
+          </div>
+        </section>
+        <section>
+          <div className="text-lg font-bold border-b border-black pb-2 mb-5">강의실</div>
+          <div className="grid grid-cols-3 gap-5">
+            {roomData.map((data) => (data.roomType === "lecture" &&
+              <RoomCard
+                key={data.roomNumber}
+                cardActive={cardActive[String(data.roomNumber)]}
+                roomNumber={data.roomNumber}
+                description={data.description}
+                capacity={data.capacity}
+                facility={data.facility}
+                reservStateHandler={reservStateHandler}
+              />
+            ))}
+          </div>
+        </section>
       </section>
       {isReserv && (
         <section>
