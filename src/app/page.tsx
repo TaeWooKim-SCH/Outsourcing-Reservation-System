@@ -220,12 +220,14 @@ export default function Home() {
           </section>
         </section>
         {isReserv && (
-          <section>
+          <section className="absolute top-0 left-0 px-60 bg-neutral-600 bg-opacity-40 w-[100vw] h-[100vh]">
             <ReservationForm
               form={form}
               timeClickHandler={timeClickHandler}
               formChangeHandler={formChangeHandler}
               selectReason={selectReason}
+              setIsReserv={setIsReserv}
+              
             />
             <div>- 회의실에는 음식물을 반입하실 수 없습니다.</div>
             <div>- 회의실 이용시 대여 인원을 지켜주세요.</div>

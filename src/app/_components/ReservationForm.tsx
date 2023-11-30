@@ -1,6 +1,7 @@
 'use client'
 
 import moment from "moment";
+import { IoClose } from "react-icons/io5";
 import { roomSchedule } from "../_modules/data";
 import TimeCheck from "./TimeCheck";
 
@@ -9,9 +10,10 @@ interface PropsType {
   timeClickHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   formChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   selectReason: boolean;
+  setIsReserv: React.Dispatch<boolean>;
 }
 
-export default function ReservationForm({ form, timeClickHandler, formChangeHandler, selectReason }: PropsType) {
+export default function ReservationForm({ form, timeClickHandler, formChangeHandler, selectReason, setIsReserv }: PropsType) {
   const timeList = [
     '09:00~10:00',
     '10:00~11:00',
@@ -25,7 +27,8 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
   
   return (
     <section className="mt-10 mb-5 shadow-lg">
-      <div className="bg-gray-200 rounded-md py-5">
+      <div className="bg-gray-200 rounded-md py-5 relative">
+        <IoClose onClick={() => setIsReserv(false)} className="absolute top-2 right-2 cursor-pointer" size="25" fill="gray" />
         <div className="grid grid-cols-6 grid-rows-2 border-b-2 border-white py-5">
           <div className="text-center py-5">시간 선택</div>
           <div className="grid grid-cols-1 gap-3 col-start-2 col-end-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
