@@ -9,7 +9,7 @@ interface PropsType {
 export default function LinkButton({ children, href, className }: PropsType) {
   return (
     <div>
-      <Link className={`text-white bg-[#1891C3] py-1 px-4 ${className}`} href={href}>{children}</Link>
+      <Link className={`text-white bg-[#1891C3] py-1 px-4 rounded-md ${className}`} href={href}>{children}</Link>
     </div>
   );
 }

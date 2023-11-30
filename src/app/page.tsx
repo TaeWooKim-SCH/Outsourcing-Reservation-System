@@ -228,7 +228,7 @@ export default function Home() {
           <div>- 회의실에는 음식물을 반입하실 수 없습니다.</div>
           <div>- 회의실 이용시 대여 인원을 지켜주세요.</div>
           <button
-            className="block py-2 px-5 mx-auto mb-20 text-white bg-yellow-700"
+            className="block py-2 px-5 mx-auto mb-20 text-white bg-[#1891C3] rounded-md"
             onClick={() => formPost(form)}
             type="button"
           >대여하기</button>
