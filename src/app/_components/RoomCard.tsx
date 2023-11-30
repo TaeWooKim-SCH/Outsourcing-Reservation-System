@@ -19,12 +19,13 @@ export default function RoomCard({
   facility,
   reservStateHandler
 }: PropsType) {
+  
   return (
     <main className="border-[1px] border-black">
       <section className="w-72">
         <Image
           className="w-72 h-48 object-cover"
-          src="/text-img.jpg"
+          src={`/roomImg/${roomNumber}/${roomNumber}-1.jpg`}
           width="300"
           height="300"
           alt="강의실 이미지"

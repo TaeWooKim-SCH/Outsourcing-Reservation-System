@@ -22,8 +22,6 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
     '16:00~17:00',
     '17:00~18:00'
   ];
-
-  
   
   return (
     <section className="mt-10 mb-5 border-2 border-black">
