@@ -21,10 +21,10 @@ export default function RoomCard({
 }: PropsType) {
   
   return (
-    <main className="border-[1px] border-black">
+    <main className=" shadow-lg rounded-md">
       <section className="w-full">
         <Image
-          className="w-full h-48 object-cover"
+          className="w-full h-48 object-cover rounded-t-md"
           src={`/roomImg/${roomNumber}/${roomNumber}-1.jpg`}
           width="300"
           height="300"
