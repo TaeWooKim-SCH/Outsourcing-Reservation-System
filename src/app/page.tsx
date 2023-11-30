@@ -170,7 +170,7 @@ export default function Home() {
       <section className="w-full pb-2 my-10">
         <section className="mb-10">
           <div className="text-lg font-bold border-b border-black pb-2 mb-5">회의실</div>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {roomData.map((data) => (data.roomType === "meeting" &&
               <RoomCard
                 key={data.roomNumber}
@@ -186,7 +186,7 @@ export default function Home() {
         </section>
         <section className="mb-10">
           <div className="text-lg font-bold border-b border-black pb-2 mb-5">전산실</div>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {roomData.map((data) => (data.roomType === "computer" &&
               <RoomCard
                 key={data.roomNumber}
@@ -202,7 +202,7 @@ export default function Home() {
         </section>
         <section>
           <div className="text-lg font-bold border-b border-black pb-2 mb-5">강의실</div>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {roomData.map((data) => (data.roomType === "lecture" &&
               <RoomCard
                 key={data.roomNumber}
