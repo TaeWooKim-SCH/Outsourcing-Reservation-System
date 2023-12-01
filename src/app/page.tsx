@@ -96,6 +96,7 @@ export default function Home() {
   return (
     <>
       <Image className="w-[130px] h-[90px]" src="/logo-img.jpg" width="500" height="500" alt="로고" />
+      <Image className="w-[100vw] h-[500px]" src="/background-img.jpg" width="2000" height="2000" alt="배경사진" />
       <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-5 px-10 md:px-28 mx-auto lg:px-30">
         <Title className="mb-5">산업시스템공학부 대여 시스템</Title>
         <section className="flex justify-end w-full mr-14 mb-5">
