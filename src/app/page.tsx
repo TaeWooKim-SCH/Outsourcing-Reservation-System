@@ -13,16 +13,6 @@ import moment from 'moment'
 export default function Home() {
   const [value, setValue] = useState<Value>(new Date());
   const [isReserv, setIsReserv] = useState(false);
-  const [cardActive, setCardActive] = useState<ActiveType>({
-    "111": false,
-    "215": false,
-    "216": false,
-    "220": false,
-    "311": false,
-    "315": false,
-    "320": false,
-    "407": false
-  });
   const [selectReason, setSelectReason] = useState(true);
   const [form, setForm] = useState<FormType>({
     date: new Date().toISOString().substring(0, 10),
@@ -61,19 +51,6 @@ export default function Home() {
   const reservStateHandler = (value: number) => {
     if (!form.date) return alert("날짜를 먼저 선택해주세요.");
     const result = {...form};
-    const activeResult: ActiveType = {
-      "111": false,
-      "215": false,
-      "216": false,
-      "220": false,
-      "311": false,
-      "315": false,
-      "320": false,
-      "407": false
-    };
-
-    activeResult[String(value)] = true;
-    setCardActive(activeResult);
 
     result.roomNumber = value;
     setForm(result);
@@ -116,49 +93,6 @@ export default function Home() {
     setForm(result);
   }
 
-  const formPost = async (form: FormType) => {
-    let timeCount = 0;
-
-    for (let time in form.time) {
-      if (form.time[time]) timeCount++;
-    }
-
-    if (!timeCount) return alert("대여 시간을 선택해주세요.");
-    else if (!form.studentId) return alert("학번 및 학과를 입력해주세요.");
-    else if (!form.studentName) return alert("이름을 입력해주세요.");
-    else if (!form.phoneNumber) return alert("전화번호를 입력해주세요.");
-    else if (!form.reason) return alert("대여 사유를 선택해주세요.");
-
-    for (let time in form.time) {
-      if (!form.time[time]) {
-        delete form.time[time];
-      }
-    }
-
-    const confirmForm = confirm(`
-      소속 및 학번: ${form.studentId}
-      이름: ${form.studentName}
-      연락처: ${form.phoneNumber}
-      대여 사유: ${form.reason}
-      위 정보가 맞습니까?
-    `)
-
-    if (confirmForm) {
-      const res = await fetch("/api/reservation", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(form)
-      });
-      if (res.status === 401) alert("이미 대여자가 존재합니다.");
-      else {
-        alert("대여에 성공했습니다.");
-        window.location.reload();
-      };
-    }
-  }
-
   return (
     <>
       <Image className="w-[130px] h-[90px]" src="/logo-img.jpg" width="500" height="500" alt="로고" />
@@ -176,7 +110,6 @@ export default function Home() {
               {roomData.map((data) => (data.roomType === "meeting" &&
                 <RoomCard
                   key={data.roomNumber}
-                  cardActive={cardActive[String(data.roomNumber)]}
                   roomNumber={data.roomNumber}
                   description={data.description}
                   capacity={data.capacity}
@@ -192,7 +125,6 @@ export default function Home() {
               {roomData.map((data) => (data.roomType === "computer" &&
                 <RoomCard
                   key={data.roomNumber}
-                  cardActive={cardActive[String(data.roomNumber)]}
                   roomNumber={data.roomNumber}
                   description={data.description}
                   capacity={data.capacity}
@@ -208,7 +140,6 @@ export default function Home() {
               {roomData.map((data) => (data.roomType === "lecture" &&
                 <RoomCard
                   key={data.roomNumber}
-                  cardActive={cardActive[String(data.roomNumber)]}
                   roomNumber={data.roomNumber}
                   description={data.description}
                   capacity={data.capacity}
@@ -220,22 +151,15 @@ export default function Home() {
           </section>
         </section>
         {isReserv && (
-          <section className="absolute top-0 left-0 px-60 bg-neutral-600 bg-opacity-40 w-[100vw] h-[100vh]">
+          <section className="absolute top-0 left-0 bg-neutral-600 bg-opacity-40 w-[100vw] h-[100vh] flex justify-center items-center">
             <ReservationForm
               form={form}
               timeClickHandler={timeClickHandler}
               formChangeHandler={formChangeHandler}
               selectReason={selectReason}
               setIsReserv={setIsReserv}
-              
             />
-            <div>- 회의실에는 음식물을 반입하실 수 없습니다.</div>
-            <div>- 회의실 이용시 대여 인원을 지켜주세요.</div>
-            <button
-              className="block py-2 px-5 mx-auto mb-20 text-white bg-[#1891C3] rounded-md"
-              onClick={() => formPost(form)}
-              type="button"
-            >대여하기</button>
+            <div className="z-10 absolute w-[100vw] h-[100vh]" onClick={() => setIsReserv(false)}></div>
           </section>
         )}
       </main>

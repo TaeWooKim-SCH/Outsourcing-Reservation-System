@@ -24,14 +24,57 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
     '16:00~17:00',
     '17:00~18:00'
   ];
+
+  const formPost = async (form: FormType) => {
+    let timeCount = 0;
+
+    for (let time in form.time) {
+      if (form.time[time]) timeCount++;
+    }
+
+    if (!timeCount) return alert("대여 시간을 선택해주세요.");
+    else if (!form.studentId) return alert("학번 및 학과를 입력해주세요.");
+    else if (!form.studentName) return alert("이름을 입력해주세요.");
+    else if (!form.phoneNumber) return alert("전화번호를 입력해주세요.");
+    else if (!form.reason) return alert("대여 사유를 선택해주세요.");
+
+    for (let time in form.time) {
+      if (!form.time[time]) {
+        delete form.time[time];
+      }
+    }
+
+    const confirmForm = confirm(`
+      소속 및 학번: ${form.studentId}
+      이름: ${form.studentName}
+      연락처: ${form.phoneNumber}
+      대여 사유: ${form.reason}
+      위 정보가 맞습니까?
+    `)
+
+    if (confirmForm) {
+      const res = await fetch("/api/reservation", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+      });
+      if (res.status === 401) alert("이미 대여자가 존재합니다.");
+      else {
+        alert("대여에 성공했습니다.");
+        window.location.reload();
+      };
+    }
+  }
   
   return (
-    <section className="mt-10 mb-5 shadow-lg">
+    <section className="w-[80%] shadow-lg text-xs md:text-sm lg:text-md z-40">
       <div className="bg-gray-200 rounded-md py-5 relative">
         <IoClose onClick={() => setIsReserv(false)} className="absolute top-2 right-2 cursor-pointer" size="25" fill="gray" />
         <div className="grid grid-cols-6 grid-rows-2 border-b-2 border-white py-5">
           <div className="text-center py-5">시간 선택</div>
-          <div className="grid grid-cols-1 gap-3 col-start-2 col-end-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="grid grid-cols-1 md:gap-3 col-start-2 col-end-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {timeList.map((time) => {
               if (roomSchedule[String(form.roomNumber)] && form.date) {
                 const weekDay = moment(new Date(form.date)).weekday();
@@ -66,7 +109,7 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
         </div>
         <div className="grid grid-cols-6 border-b-2 border-white py-5">
           <div className="text-center py-5">연락처</div>
-          <div className="py-3">
+          <div className="py-3 col-start-2 col-end-7">
             <input onChange={formChangeHandler} name="phoneNumber" />
             <div>Ex. 010-0000-0000</div>
           </div>
@@ -98,7 +141,16 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
               />
             </label>
           </div>
+          <div className="col-start-2 col-end-7">
+            <div>- 회의실에는 음식물을 반입하실 수 없습니다.</div>
+            <div>- 회의실 이용시 대여 인원을 지켜주세요.</div>
+          </div>
         </div>
+        <button
+          className="block py-2 px-5 mx-auto text-white bg-[#1891C3] rounded-md"
+          onClick={() => formPost(form)}
+          type="button"
+        >대여하기</button>
       </div>
     </section>
   );
