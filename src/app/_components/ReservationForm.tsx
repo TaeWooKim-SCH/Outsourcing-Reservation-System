@@ -69,7 +69,7 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
   }
   
   return (
-    <section className="w-[80%] max-h-[90%] shadow-lg text-xs md:text-sm lg:text-md z-40">
+    <section className="w-[80%] shadow-lg text-xs md:text-sm lg:text-md z-40">
       <div className="bg-gray-200 rounded-md py-5 relative">
         <IoClose onClick={() => setIsReserv(false)} className="absolute top-2 right-2 cursor-pointer" size="25" fill="gray" />
         <div className="grid grid-cols-6 grid-rows-2 border-b-2 border-white py-5">
