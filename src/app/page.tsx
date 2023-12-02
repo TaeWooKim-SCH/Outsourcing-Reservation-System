@@ -7,7 +7,7 @@ import LinkButton from './_components/LinkButton'
 import RoomCard from './_components/RoomCard'
 import { roomData } from './_modules/data'
 import ReservationForm from './_components/ReservationForm'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import moment from 'moment'
 
 export default function Home() {
@@ -92,6 +92,14 @@ export default function Home() {
     }
     setForm(result);
   }
+
+  useEffect(() => {
+    if (new Date().getDay() === 0 || new Date().getDay() === 6) {
+      const result = {...form};
+      result.date = "";
+      setForm(result);
+    }
+  }, []);
 
   return (
     <>
