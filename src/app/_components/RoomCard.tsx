@@ -36,10 +36,10 @@ export default function RoomCard({
         <div className="text-sm">{facility}</div>
       </section>
       <button
-        className="w-full flex justify-center items-center py-3 px-10 bg-gray-200 rounded-b-md"
+        className="w-full flex justify-center items-center py-3 px-10 bg-gray-200 rounded-b-md group"
         onClick={() => reservStateHandler(roomNumber)}
       >
-        <FaRegCircleCheck size="30" fill="gray" />
+        <FaRegCircleCheck className="group-hover:fill-[#1891C3] transition-all" size="30" fill="gray" />
         <div className="ml-2 text-lg">대여</div>
       </button>
     </main>
