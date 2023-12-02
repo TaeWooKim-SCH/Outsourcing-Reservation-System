@@ -96,7 +96,8 @@ export default function Home() {
   return (
     <>
       <Image className="w-[200px]" src="/logo-img.jpg" width="500" height="500" alt="로고" />
-      <Image className="-z-10 opacity-80 absolute top-44 left-0 w-[100vw] h-[500px] object-cover" src="/background-img.jpg" width="5000" height="3000" alt="배경사진" />
+      {/* <Image className="-z-10 opacity-80 absolute top-44 left-0 w-[100vw] h-[500px] object-cover" src="/background-img.jpg" width="5000" height="3000" alt="배경사진" /> */}
+      <Image className="-z-10 opacity-80 absolute top-56 left-0 w-[100vw] h-[500px] object-cover" src="/background-img.jpg" width="5000" height="3000" alt="배경사진" />
       <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-5 px-10 md:px-28 mx-auto lg:px-30">
         <Title className="mb-28">산업시스템공학부 대여 시스템</Title>
         <section className="flex justify-end w-full mr-14 mb-5">
@@ -104,7 +105,7 @@ export default function Home() {
           <LinkButton href="/user" className="">대여확인</LinkButton>
         </section>
         <CalendarContainer value={value} dayChangeHandler={dayChangeHandler} />
-        <section className="w-full pb-2 mt-32 mb-10">
+        <section className="w-full pb-2 mt-20 mb-10">
           <section className="mb-10">
             <div className="text-lg font-bold border-b border-black pb-2 mb-5">회의실</div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
