@@ -3,7 +3,6 @@
 import React from "react";
 import { Suspense, useState } from "react";
 import UserLoginForm from "../_components/UserLoginForm";
-// import UserMainSection from "../_components/UserMainSection";
 import Title from "../_components/Title";
 import { loginPost } from "../_modules/api";
 import Loading from "../admin/loading";
@@ -32,30 +31,6 @@ export default function Page() {
     }
     setForm(result);
   };
-
-  // const loginPost = async () => {
-  //   const res = await fetch('/api/user/reservation', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(form)
-  //   });
-  //   const json: ReservationType[] = await res.json();
-  //   json.sort((a: ReservationType, b: ReservationType) => {
-  //     if (new Date(a.date) > new Date(b.date)) {
-  //       return -1;
-  //     }
-  //     else {
-  //       return 1;
-  //     }
-  //   })
-  //   if (!res.ok) alert("대여 목록이 존재하지 않습니다. 이름 또는 전화번호를 확인하세요.");
-  //   else {
-  //     setReservationList(json);
-  //     setIsLogin(true);
-  //   };
-  // }
 
   if (!isLogin) {
     return (
