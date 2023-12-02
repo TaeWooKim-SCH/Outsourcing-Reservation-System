@@ -34,7 +34,7 @@ export default function Home() {
   });
 
   const dayChangeHandler = (date: Value) => {
-    if (date && new Date(date.toString()).getTime() < new Date().getTime()) {
+    if (date && new Date(date.toString()).getTime() + (24 * 60 * 60 * 1000) < new Date().getTime()) {
       return alert("지난 날짜는 선택할 수 없습니다.");
     }
     else if (moment(date as Date).weekday() === 0 || moment(date as Date).weekday() === 6) {
