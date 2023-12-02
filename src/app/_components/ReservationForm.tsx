@@ -85,7 +85,7 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
         <IoClose onClick={() => setIsReserv(false)} className="absolute top-2 right-2 cursor-pointer" size="25" fill="gray" />
         <div className="grid grid-cols-6 grid-rows-2 border-b-2 border-white py-5">
           <div className="text-center py-5">시간 선택</div>
-          <div className="grid grid-cols-1 md:gap-3 col-start-2 col-end-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="grid grid-cols-1 md:gap-3 col-start-2 col-end-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {timeList.map((time) => {
               if (roomSchedule[String(form.roomNumber)] && form.date) {
                 const weekDay = moment(new Date(form.date)).weekday();
