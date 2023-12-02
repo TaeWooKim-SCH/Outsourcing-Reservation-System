@@ -3,27 +3,24 @@
 import { useEffect, useState } from "react";
 import TableHeaderElement from "./TableHeaderElement";
 import ChangeReservationState from "./ChangeReservationState";
+import { reservationDataFetching } from "../_modules/api";
 
 export default function AdminMainSection() {
-  const [reserv, setReserv] = useState<DataType[]>([]);
+  const [reserv, setReserv] = useState<DataType[] | undefined>([]);
   const headerElList = ["No.", "이름", "날짜", "시간", "장소", "대여사유", "소속/학번", "휴대폰 번호", "비고"];
 
-  const reservationDataFetching = async () => {
-    const res = await fetch("/api/reservation");
-    const json: DataType[] = await res.json();
-    json.sort((a: DataType, b: DataType) => {
-      if (new Date(a.date) > new Date(b.date)) {
-        return -1;
-      }
-      else {
-        return 1;
-      }
-    })
-    setReserv(json);
+  const dataFetch = async () => {
+    try {
+      const data = await reservationDataFetching();
+      setReserv(data);
+    }
+    catch(error) {
+      console.error(error);
+    } 
   }
 
   useEffect(() => {
-    reservationDataFetching();
+    dataFetch();
   }, [])
   
   return (
@@ -35,7 +32,7 @@ export default function AdminMainSection() {
           </tr>
         </thead>
         <tbody>
-          {reserv.length ? reserv.map((el: DataType, idx: number) => {
+          {reserv ? reserv.map((el: DataType, idx: number) => {
             return (
             <tr className="text-center text-sm" key={el._id}>
               <td>{idx + 1}</td>

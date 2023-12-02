@@ -4,6 +4,8 @@ import moment from "moment";
 import { IoClose } from "react-icons/io5";
 import { roomSchedule } from "../_modules/data";
 import TimeCheck from "./TimeCheck";
+import { useState } from "react";
+import Loading from "../admin/loading";
 
 interface PropsType {
   form: FormType;
@@ -14,6 +16,7 @@ interface PropsType {
 }
 
 export default function ReservationForm({ form, timeClickHandler, formChangeHandler, selectReason, setIsReserv }: PropsType) {
+  const [isLoading, setIsLoading] = useState(false);
   const timeList = [
     '09:00~10:00',
     '10:00~11:00',
@@ -53,6 +56,7 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
     `)
 
     if (confirmForm) {
+      setIsLoading(true);
       const res = await fetch("/api/reservation", {
         method: 'POST',
         headers: {
@@ -60,12 +64,19 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
         },
         body: JSON.stringify(form)
       });
-      if (res.status === 401) alert("이미 대여자가 존재합니다.");
+      if (res.status === 401) {
+        alert("이미 대여자가 존재합니다.");
+        window.location.reload();
+      }
       else {
         alert("대여에 성공했습니다.");
         window.location.reload();
       };
     }
+  }
+
+  if (isLoading) {
+    return <Loading />;
   }
   
   return (
