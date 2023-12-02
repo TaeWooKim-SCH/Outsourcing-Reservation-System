@@ -32,7 +32,7 @@ export default function AdminLoginForm({ form, loginFormChangeHandler }: PropsTy
           <div className="flex justify-end items-center mb-5">
             <div>아이디</div>
             <input
-              className="h-7 px-2 ml-3 bg-gray-200 rounded-md outline-none"
+              className="border border-neutral-300 h-7 px-2 ml-3 bg-gray-100 rounded-md outline-none"
               type="text"
               name="id"
               value={form.adminId}
@@ -43,7 +43,7 @@ export default function AdminLoginForm({ form, loginFormChangeHandler }: PropsTy
           <div className="flex justify-end items-center">
             <div>비밀번호</div>
             <input
-              className="h-7 px-2 ml-3 bg-gray-200 rounded-md outline-none"
+              className="border border-neutral-300 h-7 px-2 ml-3 bg-gray-100 rounded-md outline-none"
               type="password"
               name="pw"
               value={form.adminPw}

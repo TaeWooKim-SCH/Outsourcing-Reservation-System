@@ -80,8 +80,8 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
   }
   
   return (
-    <section className="w-[80%] shadow-lg text-xs md:text-sm lg:text-md z-40">
-      <div className="bg-gray-200 rounded-md py-5 relative">
+    <section className="w-[80%] max-w-3xl shadow-lg text-xs md:text-sm lg:text-md z-40">
+      <div className="bg-neutral-200 rounded-md py-5 relative">
         <IoClose onClick={() => setIsReserv(false)} className="absolute top-2 right-2 cursor-pointer" size="25" fill="gray" />
         <div className="grid grid-cols-6 grid-rows-2 border-b-2 border-white py-5">
           <div className="text-center py-5">시간 선택</div>
@@ -107,44 +107,44 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
         <div className="grid grid-cols-6 border-b-2 border-white py-5">
           <div className="text-center py-5">소속 및 학번</div>
           <div className="col-start-2 col-end-6 py-3">
-            <input className=" w-64 h-6 rounded-md px-2 mb-3 outline-none" onChange={formChangeHandler} name="studentId" />
+            <input className="border border-neutral-300 w-64 h-6 rounded-md px-2 mb-3 outline-none" onChange={formChangeHandler} name="studentId" />
             <div>Ex. 산업시스템공학부 20200111</div>
           </div>
         </div>
         <div className="grid grid-cols-6 border-b-2 border-white py-5">
           <div className="text-center py-5">이름</div>
           <div className="py-3">
-            <input className="h-6 rounded-md px-2 mb-3 outline-none" onChange={formChangeHandler} name="studentName" />
+            <input className="border border-neutral-300 h-6 rounded-md px-2 mb-3 outline-none" onChange={formChangeHandler} name="studentName" />
             <div>Ex. 산시인</div>
           </div>
         </div>
         <div className="grid grid-cols-6 border-b-2 border-white py-5">
           <div className="text-center py-5">연락처</div>
           <div className="py-3 col-start-2 col-end-7">
-            <input className="h-6 rounded-md px-2 mb-3 outline-none" onChange={formChangeHandler} name="phoneNumber" />
+            <input className="border border-neutral-300 h-6 rounded-md px-2 mb-3 outline-none" onChange={formChangeHandler} name="phoneNumber" />
             <div>Ex. 010-0000-0000</div>
           </div>
         </div>
         <div className="grid grid-cols-6 py-5">
           <div className="text-center py-5">대여 사유</div>
           <div className="col-start-2 col-end-7 flex space-x-3">
-            <label className="flex items-center">
+            <label className="flex items-center cursor-pointer">
               <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="회의" />
               회의
             </label>
-            <label className="flex items-center">
+            <label className="flex items-center cursor-pointer">
               <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="면담" />
               면담
             </label>
-            <label className="flex items-center">
+            <label className="flex items-center cursor-pointer">
               <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="세미나" />
               세미나
             </label>
-            <label className="flex items-center">
+            <label className="flex items-center cursor-pointer">
               <input className="mr-1" onChange={formChangeHandler} type="radio" name="reason" value="기타" />
               <div>기타:</div>
               <input
-                className="h-5 ml-2"
+                className="border border-neutral-300 h-6 ml-2 outline-none px-2 rounded-md disabled:bg-gray-200"
                 onChange={formChangeHandler}
                 type="text"
                 name="reason-text"

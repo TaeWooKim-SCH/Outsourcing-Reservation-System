@@ -9,7 +9,7 @@ export default function UserLoginForm({ form, loginFormChangeHandler, loginPost 
           <div className="flex justify-end items-center mb-5">
             <div>이름</div>
             <input
-              className="h-7 px-2 ml-3 bg-gray-200 rounded-md outline-none"
+              className="border border-neutral-300 h-7 px-2 ml-3 bg-gray-100 rounded-md outline-none"
               type="text"
               name="name"
               value={form.name}
@@ -20,7 +20,7 @@ export default function UserLoginForm({ form, loginFormChangeHandler, loginPost 
           <div className="flex justify-end items-center">
             <div>전화번호</div>
             <input
-              className="h-7 px-2 ml-3 bg-gray-200 rounded-md outline-none"
+              className="border border-neutral-300 h-7 px-2 ml-3 bg-gray-100 rounded-md outline-none"
               type="text"
               name="phoneNumber"
               value={form.phoneNumber}
