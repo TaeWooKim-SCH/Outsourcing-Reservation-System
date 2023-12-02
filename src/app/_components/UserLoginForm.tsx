@@ -3,27 +3,29 @@ import Image from "next/image";
 export default function UserLoginForm({ form, loginFormChangeHandler, loginPost }: PropsType) {
   return (
     <main className="flex justify-center items-center w-full h-full">
-      <section className="border-2 border-black w-[400px] h-[500px] flex flex-col items-center">
+      <section className="border-2 border-[#1891C3] rounded-md w-[400px] h-[500px] flex flex-col items-center">
         <Image className="w-100px h-auto mt-10" src="/logo-img.jpg" width={300} height={100} alt="로고" />
         <div className="mt-7">
           <div className="flex justify-end items-center mb-5">
             <div>이름</div>
             <input
-              className="h-7 px-2 ml-3 bg-gray-200 rounded-md"
+              className="h-7 px-2 ml-3 bg-gray-200 rounded-md outline-none"
               type="text"
               name="name"
               value={form.name}
               onChange={loginFormChangeHandler}
+              onKeyDown={(e) => e.key === 'Enter' && loginPost()}
             />
           </div>
           <div className="flex justify-end items-center">
             <div>전화번호</div>
             <input
-              className="h-7 px-2 ml-3 bg-gray-200 rounded-md"
+              className="h-7 px-2 ml-3 bg-gray-200 rounded-md outline-none"
               type="text"
               name="phoneNumber"
               value={form.phoneNumber}
               onChange={loginFormChangeHandler}
+              onKeyDown={(e) => e.key === 'Enter' && loginPost()}
             />
           </div>
         </div>
