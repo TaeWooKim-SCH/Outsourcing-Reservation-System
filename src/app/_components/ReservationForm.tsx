@@ -107,7 +107,7 @@ export default function ReservationForm({ form, timeClickHandler, formChangeHand
         <div className="grid grid-cols-6 border-b-2 border-white py-5">
           <div className="text-center py-5">소속 및 학번</div>
           <div className="col-start-2 col-end-6 py-3">
-            <input className="h-6 rounded-md px-2 mb-3 outline-none" onChange={formChangeHandler} name="studentId" />
+            <input className=" w-64 h-6 rounded-md px-2 mb-3 outline-none" onChange={formChangeHandler} name="studentId" />
             <div>Ex. 산업시스템공학부 20200111</div>
           </div>
         </div>
