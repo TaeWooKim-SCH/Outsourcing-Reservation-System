@@ -19,7 +19,7 @@ export default function RoomCard({
 }: PropsType) {
   
   return (
-    <main className=" shadow-lg rounded-md">
+    <main className="shadow-lg rounded-md">
       <section className="w-full">
         <Image
           className="w-full h-48 object-cover rounded-t-md"

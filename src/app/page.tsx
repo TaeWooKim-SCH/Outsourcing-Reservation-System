@@ -96,15 +96,15 @@ export default function Home() {
   return (
     <>
       <Image className="w-[130px] h-[90px]" src="/logo-img.jpg" width="500" height="500" alt="로고" />
-      <Image className="w-[100vw] h-[500px]" src="/background-img.jpg" width="2000" height="2000" alt="배경사진" />
+      <Image className="-z-10 opacity-60 absolute top-44 left-0 w-[100vw] h-[500px] object-cover" src="/background-img.jpg" width="5000" height="3000" alt="배경사진" />
       <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-5 px-10 md:px-28 mx-auto lg:px-30">
-        <Title className="mb-5">산업시스템공학부 대여 시스템</Title>
+        <Title className="mb-20">산업시스템공학부 대여 시스템</Title>
         <section className="flex justify-end w-full mr-14 mb-5">
           <LinkButton href="/admin" className="mr-2">관리자</LinkButton>
           <LinkButton href="/user" className="">대여확인</LinkButton>
         </section>
         <CalendarContainer value={value} dayChangeHandler={dayChangeHandler} />
-        <section className="w-full pb-2 my-10">
+        <section className="w-full pb-2 mt-32 mb-10">
           <section className="mb-10">
             <div className="text-lg font-bold border-b border-black pb-2 mb-5">회의실</div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -152,7 +152,7 @@ export default function Home() {
           </section>
         </section>
         {isReserv && (
-          <section className="absolute top-0 left-0 bg-neutral-600 bg-opacity-40 w-[100vw] h-[100vh] flex justify-center items-center">
+          <section className="fixed top-0 left-0 bg-neutral-600 bg-opacity-40 w-[100vw] h-[100vh] flex justify-center items-center">
             <ReservationForm
               form={form}
               timeClickHandler={timeClickHandler}
