@@ -28,12 +28,7 @@ export default function CalendarContainer({ dayChangeHandler, value }: PropsType
         calendarType="gregory"
         locale="ko-KO"
         formatDay={(locale, date) => moment(date).format('DD')}
-        // formatMonth={(locale, date) => moment(date).format('MM월')}
-        // formatYear={(locale, date) => moment(date).format('YYYY년')}
-        // formatMonthYear={(locale, date) => moment(date).format('YYYY년 MM월')}
         onChange={dayChangeHandler}
-        // tileContent={(args) => holidayMarker(args.activeStartDate, args.date, args.view)}
-        // onClickDay={dayClickHandler}
       />
     </main>
   );
