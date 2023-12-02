@@ -105,7 +105,7 @@ export default function Home() {
           <LinkButton href="/user" className="">대여확인</LinkButton>
         </section>
         <CalendarContainer value={value} dayChangeHandler={dayChangeHandler} />
-        <section className="w-full pb-2 mt-20 mb-10">
+        <section className="w-full pb-2 mt-36 sm:mt-20 mb-10">
           <section className="mb-10">
             <div className="text-lg font-bold border-b border-black pb-2 mb-5">회의실</div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
