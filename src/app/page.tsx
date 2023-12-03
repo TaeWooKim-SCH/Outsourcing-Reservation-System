@@ -103,10 +103,12 @@ export default function Home() {
 
   return (
     <>
-      <Image className="w-[200px]" src="/logo-img.jpg" width="500" height="500" alt="로고" />
+      {/* <Image className="w-[200px]" src="/logo-img.jpg" width="500" height="500" alt="로고" /> */}
+      <Image className="w-[200px] absolute top-10 left-10" src="/logo-img.jpg" width="500" height="500" alt="로고" />
+      <Image className="w-[200px] absolute top-10 right-10" src="/gnu-img.png" width="500" height="500" alt="gnu" />
       <Image className="-z-10 opacity-80 absolute top-56 left-0 w-[100vw] h-[500px] object-cover" src="/background-img.jpg" width="5000" height="3000" alt="배경사진" />
-      <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-5 px-10 md:px-28 mx-auto lg:px-30">
-        <Title className="mb-28">산업시스템공학부 대여 시스템</Title>
+      <main className="w-[100vw] max-w-[1100px] flex flex-col items-center pt-36 px-10 md:px-28 mx-auto lg:px-30">
+        <Title className="mb-28 text-3xl">산업시스템공학부 대여 시스템</Title>
         <section className="flex justify-end w-full mr-14 mb-5">
           <LinkButton href="/admin" className="mr-2">관리자</LinkButton>
           <LinkButton href="/user" className="">대여확인</LinkButton>
