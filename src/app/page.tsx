@@ -103,7 +103,6 @@ export default function Home() {
 
   return (
     <>
-      {/* <Image className="w-[200px]" src="/logo-img.jpg" width="500" height="500" alt="로고" /> */}
       <Image className="w-[200px] absolute top-10 left-10" src="/logo-img.jpg" width="500" height="500" alt="로고" />
       <Image className="w-[200px] absolute top-10 right-10" src="/gnu-img.png" width="500" height="500" alt="gnu" />
       <Image className="-z-10 opacity-80 absolute top-56 left-0 w-[100vw] h-[500px] object-cover" src="/background-img.jpg" width="5000" height="3000" alt="배경사진" />
