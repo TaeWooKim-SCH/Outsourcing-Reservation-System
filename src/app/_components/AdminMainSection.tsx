@@ -17,7 +17,7 @@ export default function AdminMainSection() {
     catch(error) {
       console.error(error);
     } 
-  }
+  };
 
   useEffect(() => {
     dataFetch();
